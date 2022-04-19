@@ -1,8 +1,7 @@
 pyobjc
-pyobjc-framework-Quartz; sys_platform == 'darwin'
+pyobjc-framework-Quartz; sys_platform=="darwin"
 keyboard
-git+git://github.com/boppreh/mouse@master#egg=mouse #mouse
-# pyaudio
+git+git://github.com/boppreh/mouse@master#egg=mouse
 Pillow
 git+git://github.com/samclane/lifxlan@master#egg=lifxlan
 numexpr
