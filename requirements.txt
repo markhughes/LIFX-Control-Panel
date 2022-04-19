@@ -1,3 +1,4 @@
+pyobjc
 pyobjc-framework-Quartz; sys_platform == 'darwin'
 keyboard
 git+git://github.com/boppreh/mouse@master#egg=mouse #mouse
