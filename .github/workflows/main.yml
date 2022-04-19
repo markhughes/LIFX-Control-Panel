@@ -43,7 +43,7 @@ jobs:
       - name: Build Project
         run: |
           cd ./lifx_control_panel
-          PYTHONOPTIMIZE=1 pyinstaller --onefile --noupx build_all.spec
+          PYTHONOPTIMIZE=1 pyinstaller build_all.spec
           cd ..
 
   smoke-build-windows:
@@ -81,7 +81,7 @@ jobs:
       - name: Build Project
         run: |
           cd ./lifx_control_panel
-          set PYTHONOPTIMIZE=1 && pyinstaller --onefile --noupx build_all.spec
+          set PYTHONOPTIMIZE=1 && pyinstaller build_all.spec
           cd ..
   
   test:
