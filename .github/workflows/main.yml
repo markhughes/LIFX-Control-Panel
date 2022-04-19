@@ -37,10 +37,12 @@ jobs:
           brew install swig
       - name: Check swig
         run: swig -version
-      - name: Install python and deps
+      - name: Install pip and requirements
         run: |
           python -m pip install --upgrade pip
           cat requirements.txt | xargs -n 1 pip install || exit 0
+      - name: Install pyinstaller
+        run: |
           pip install pyinstaller
       - name: Build Project
         run: |
