@@ -89,8 +89,13 @@ jobs:
         run: |
           cd ./lifx_control_panel
           set PYTHONOPTIMIZE=1 && pyinstaller build_all.spec
+          Compress-Archive -Path .\dist\* -DestinationPath .\lifx_control_panel-windows.zip
           cd ..
-  
+      - uses: actions/upload-artifact@v3
+        with:
+          name: lifx_control_panel-windows
+          path: lifx_control_panel/lifx_control_panel-windows.zip
+
   test:
     runs-on: windows-latest
     steps:
