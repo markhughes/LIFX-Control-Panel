@@ -46,7 +46,12 @@ jobs:
         run: |
           cd ./lifx_control_panel
           PYTHONOPTIMIZE=1 pyinstaller build_all.spec
+          zip -r lifx_control_panel-mac.zip ./dist/*
           cd ..
+      - uses: actions/upload-artifact@v3
+        with:
+          name: lifx_control_panel-mac
+          path: lifx_control_panel/lifx_control_panel-mac.zip
 
   smoke-build-windows:
     runs-on: windows-latest
