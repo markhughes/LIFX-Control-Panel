@@ -1,5 +1,6 @@
 keyboard
 git+git://github.com/boppreh/mouse@master#egg=mouse #mouse
+pyobjc-framework-Quartz; sys_platform == 'darwin'
 # pyaudio
 Pillow
 git+git://github.com/samclane/lifxlan@master#egg=lifxlan
