@@ -1,5 +1,5 @@
 keyboard
-mouse
+git+git://github.com/boppreh/mouse@master#egg=mouse #mouse
 # pyaudio
 Pillow
 git+git://github.com/samclane/lifxlan@master#egg=lifxlan
