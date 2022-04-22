@@ -34,12 +34,13 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         run: |
           bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)";
-          brew install swig
+          brew install swig portaudio
       - name: Check swig
         run: swig -version
       - name: Install pip and requirements
         run: |
           python -m pip install --upgrade pip
+          pip install --global-option='build_ext' --global-option='-I/usr/local/include' --global-option='-L/usr/local/lib' pyaudio
           cat requirements.txt | xargs -n 1 pip install || exit 0
       - name: Install pyinstaller
         run: |
