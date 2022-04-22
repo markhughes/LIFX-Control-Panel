@@ -5,7 +5,6 @@ from typing import Union, List, Tuple, Dict, Mapping
 
 import mouse
 import lifxlan
-import win32api
 
 from lifxlan import (
     ORANGE,
@@ -622,11 +621,9 @@ class LightFrame(ttk.Labelframe):  # pylint: disable=too-many-ancestors
     def eyedropper(self, *_, **__):
         """ Allows user to select a color pixel from the screen. """
         self.master.master.withdraw()  # Hide window
-        state_left = win32api.GetKeyState(
-            0x01
-        )  # Left button down = 0 or 1. tkinter.Button up = -127 or -128
+        state_left = mouse.is_pressed(button='left') # Left button down = 0 or 1. tkinter.Button up = -127 or -128
         while True:
-            action = win32api.GetKeyState(0x01)
+            action = mouse.is_pressed(button='left')
             if action != state_left:  # tkinter.Button state changed
                 state_left = action
                 if action >= 0:
