@@ -98,7 +98,42 @@ jobs:
           name: lifx_control_panel-windows
           path: lifx_control_panel/lifx_control_panel-windows.zip
 
-  test:
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.8.x' # Semantic version range syntax or exact version of a Python version
+          architecture: 'x64'
+      - name: Cache pip
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/pip # This path is specific to Ubuntu
+          # Look to see if there is a cache hit for the corresponding requirements file
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
+      - name: Test Project
+        run: |
+          git config --global url."https://github.com/".insteadOf git://github.com/
+          cat requirements.txt | xargs -n 1 pip3 install --user -r || exit 0
+          cat requirements-dev.txt | xargs -n 1 pip3 install --user -r || exit 0
+          cd ./lifx_control_panel
+          PYTHONPATH=.
+          coverage run -m unittest discover test -p "*test*.py"
+          coverage report
+          coverage xml -o coverage.xml
+          cd ..
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          files: ./lifx_control_panel/coverage.xml
+          flags: unittests
+
+  test-windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
