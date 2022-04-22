@@ -119,8 +119,8 @@ jobs:
       - name: Test Project
         run: |
           git config --global url."https://github.com/".insteadOf git://github.com/
-          cat requirements.txt | xargs -n 1 pip3 install --user -r || exit 0
-          cat requirements-dev.txt | xargs -n 1 pip3 install --user -r || exit 0
+          cat requirements.txt | xargs -n 1 pip install || exit 0
+          cat requirements-dev.txt | xargs -n 1 pip install || exit 0
           cd ./lifx_control_panel
           PYTHONPATH=.
           coverage run -m unittest discover test -p "*test*.py"
